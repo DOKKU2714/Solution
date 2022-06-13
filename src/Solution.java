@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Solution {
 	public static void main(String[] args) {
-		solution4();
+		Scanner sc = new Scanner(System.in);
+
+		solution4_2(sc.nextInt());
 	}
 
 /*
@@ -70,6 +72,60 @@ public class Solution {
 				break;
 			}
 		}
+		System.out.println(count);
+	}
+
+
+	private static void solution4_1() {
+		Scanner scanner = new Scanner(System.in);
+
+		int area = Integer.parseInt(scanner.nextLine());
+		String str = scanner.nextLine();
+
+		int[][] areaArr = new int[area+1][area+1];
+		String[] strArr = str.split(" ");
+
+		int row = 1;
+		int column = 1;
+
+		//R R U D
+
+		for (int i = 0 ; i < strArr.length ; i++) {
+			switch (strArr[i]) {
+				case "R":
+					row++;
+					break;
+				case "L":
+					row = row > 1 ? --row : 1;
+					break;
+				case "U":
+					column = column > 1 ? --column : 1;
+					break;
+				case "D":
+					column++;
+					break;
+			}
+		}
+
+		System.out.println(column+" "+row);
+	}
+
+	private static void solution4_2(int hour) {
+		int count = 0;
+
+		for (int x = 0 ; x <= hour ; x++) {
+			for (int i = 0 ; i < 60 ; i++) {
+				for (int j = 0 ; j < 60 ; j++) {
+					String jnum = j+"";
+					String inum = i+"";
+					String xnum = x+"";
+					if (jnum.contains("3") || inum.contains("3") || xnum.contains("3")) {
+						count ++;
+					}
+				}
+			}
+		}
+
 		System.out.println(count);
 	}
 }
