@@ -6,7 +6,7 @@ public class Solution {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		solution4_2(sc.nextInt());
+		solution115page(sc.nextLine());
 	}
 
 /*
@@ -127,5 +127,47 @@ public class Solution {
 		}
 
 		System.out.println(count);
+	}
+
+	private static void solution115page(String position) {
+		int[][] area = new int[8][8];
+		int[][] canStep = {{1, 2}, {1,-2},{-1,2}, {-1,-2},{2,1},{2,-1},{-2,1}, {-2,-1}};
+
+		int x = (int)((position.substring(0,1).toUpperCase()).charAt(0)-64)-1;
+		int y = Integer.parseInt(position.substring(1,2))-1;
+
+		int count = 0;
+
+		for (int i = 0 ; i < 8 ; i++) {
+
+			if ((x+canStep[i][0] > -1 && x+canStep[i][0] < 8)
+					&& (y+canStep[i][1] > -1 && y+canStep[i][1] < 8)) {
+				count++;
+			}
+		}
+
+		System.out.println(count);
+ 	}
+
+	private static void solution118page(String mapSize, String location, String[] map) {
+		//현재 위치에서 왼쪽 90방향부터 갈 곳 정함
+		//캐릭터의 왼쪽에 가보지 않은 칸 있으면 회전 후 한칸 전진함 가보지 않은 칸이 없으면 그냥 회전만하고 끝
+		// 네 방향 모두 가본 칸이거나 바다면 바라보는 방향 유지 후 한칸 뒤로가고 다시 회전함
+		//근데 뒤 방향이 바다인경우 움직임 멈추고 끝
+
+		int x = Integer.parseInt(mapSize.split(" ")[0]);
+		int y = Integer.parseInt(mapSize.split(" ")[1]);
+
+		int[][] mapArr = new int[x][y];
+
+		int locationX = Integer.parseInt(location.split(" ")[0]);
+		int locationY = Integer.parseInt(location.split(" ")[1]);
+		int look = Integer.parseInt(location.split(" ")[2]);
+
+		mapArr[locationX][locationY] = 3;
+
+
+
+
 	}
 }
